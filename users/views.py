@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from algorithms import *
+from montecarlotree import *
 from django.http import JsonResponse
 from django.http import HttpResponse
 import json
