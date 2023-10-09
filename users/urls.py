@@ -21,6 +21,8 @@ from . import views
 urlpatterns = [
     path('', views.handle_moves),
     path('test/', views.test, name='test' ),
-    path('reset_board/', views.reset_board, name='reset_board')
+    path('mcts_moves/', views.mcts_moves, name='mcts_moves'),
+    path('reset_board/', views.reset_board, name='reset_board'),
+    
 ]
 

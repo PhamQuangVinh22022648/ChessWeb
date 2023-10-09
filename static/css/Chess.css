@@ -29,7 +29,7 @@ body {
 .info-panel
 {
     width: 400px; /* Adjust the width as needed */
-    height: 450px; /* Make it the same height as the chessboard */
+    height: 520px; /* Make it the same height as the chessboard */
     background-color: white; /* Background color of the table */
     margin-left: 120px;
     border: 2px solid #ccc;
@@ -79,14 +79,40 @@ background-color .8s ease;
     background-color:rgba(28, 190, 131, 1);
     background-position: -100% 100%;
 }
-#ajaxButton {
+#ajaxButton2 {
+    margin-top: 10px;
+    margin-left: 10px;
     background-color: #48abe0;
     color: white;
     border: none;
     padding: 5px;
     font-size: 12px;
-    height: 70px;
-    width: 70px;
+    height: 100px;
+    width: 100px;
+    box-shadow: 0 2px 4px darkslategray;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#ajaxButton2:hover
+{
+    background-color: #65b9e6;
+}
+#ajaxButton2:active
+{
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+}
+#ajaxButton {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: #48abe0;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 12px;
+    height: 100px;
+    width: 100px;
     box-shadow: 0 2px 4px darkslategray;
     border-radius: 50%;
     cursor: pointer;
@@ -101,6 +127,7 @@ background-color .8s ease;
     box-shadow: 0 0 2px darkslategray;
     transform: translateY(2px);
 }
+
 ul {
     
     display: grid;

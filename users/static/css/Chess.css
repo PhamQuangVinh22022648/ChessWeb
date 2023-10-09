@@ -79,6 +79,28 @@ background-color .8s ease;
     background-color:rgba(28, 190, 131, 1);
     background-position: -100% 100%;
 }
+#ajaxButton2 {
+    background-color: #48abe0;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 12px;
+    height: 70px;
+    width: 70px;
+    box-shadow: 0 2px 4px darkslategray;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#ajaxButton2:hover
+{
+    background-color: #65b9e6;
+}
+#ajaxButton2:active
+{
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+}
 #ajaxButton {
     background-color: #48abe0;
     color: white;
@@ -101,6 +123,7 @@ background-color .8s ease;
     box-shadow: 0 0 2px darkslategray;
     transform: translateY(2px);
 }
+
 ul {
     
     display: grid;

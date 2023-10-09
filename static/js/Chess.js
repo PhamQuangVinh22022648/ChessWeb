@@ -845,12 +845,18 @@ $(document).ready(function () {
     $("#reset-button").click(function () {
         resetBoard();
     });
-    $("#ajaxButton").click(function (){
+    var selectedAlgorithm = ''
+    function updateChessboard(){
         var csrftoken = getCookie('csrftoken');
-        var lastMove = moves.pop();
+        var lastMove = moves[moves.length-1];
+        if (selectedAlgorithm === "MCTS") {
+            algorithmUrl = "/mcts_moves/"; // Replace with the actual URL for MCTS moves
+        } else {
+            algorithmUrl = "/test/"; // Replace with the actual URL for alpha-beta moves
+        }    
         $.ajax({
             type: "POST",
-            url: "/test/",
+            url: algorithmUrl,
             data: JSON.stringify({'moves': [lastMove]}),
             contentType: "application/json; charset=utf-8", // Set content type to JSON
             dataType: "json", // Expect JSON response
@@ -861,7 +867,7 @@ $(document).ready(function () {
                 // Handle the response from the backend
                 var bestMove = data.best_move;
                 console.log('Best Move:', bestMove);
-                if(bestMove === 'O-O' || bestMove === 'e1g1')
+                if(bestMove === 'O-O' || bestMove === 'e8g8')
                 {
                     document.getElementById('b806').innerText = 'Brook'
                     document.getElementById('b807').innerText = 'Bking'
@@ -896,7 +902,16 @@ $(document).ready(function () {
                 console.error("Server response:", status);
             }
         })
-    })
+    }
+    $("#ajaxButton").click(function (){
+        selectedAlgorithm = "test"
+        setInterval(updateChessboard, 3000);
+    });
+    
+    $("#ajaxButton2").click(function (){
+        selectedAlgorithm = "MCTS";
+        setInterval(updateChessboard, 3000);
+    });
     
 });
 function moveForBlack(fromMove, toMove) {

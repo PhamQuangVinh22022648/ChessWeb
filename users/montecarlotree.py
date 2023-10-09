@@ -7,7 +7,7 @@ class TreeNode():
         self.V = 0
         self.visitedMovesAndNodes = []
         self.nonVisitedLegalMoves = []
-        self.board = chess.Board()
+        self.board = board
         self.parent = None
         for m in self.board.legal_moves:
             self.nonVisitedLegalMoves.append(m)
@@ -72,8 +72,7 @@ def backpropagate ( node , payout ) :
 def get_best_move(board):
     root = TreeNode(board)
 
-    # Perform a fixed number of iterations (e.g., 200)
-    for i in range(200):
+    for i in range(100):
         node = select(root)
         if not node.isTerminalNode():
             node = expand(node)
@@ -85,23 +84,25 @@ def get_best_move(board):
 
     # Return the best move as a chess.Move object
     best_move, _ = root.visitedMovesAndNodes[0]
-    return best_move
+    return best_move.uci()
 
 
-board = chess.Board()
 
-while not board.is_game_over():
-    if board.turn == chess.WHITE:
-        algorithm_move = get_best_move(board)
-        board.push(algorithm_move)
-        print("Algorithm's Move:", algorithm_move.uci())
-    else:
-        print(board)
-        user_move = input("Enter your move (e.g., 'e2e4'): ")
-        try:
-            board.push_san(user_move)
-        except ValueError:
-            print("Invalid move. Try again.")
+if __name__ == "__main__":
+    board = chess.Board()
 
-# Game over, print the result
-print("Game Over. Result:", board.result())
+    while not board.is_game_over():
+        if board.turn == chess.BLACK:
+            algorithm_move = get_best_move(board)
+            board.push_san(algorithm_move)
+            print("Algorithm's Move:", algorithm_move)
+        else:
+            print(board)
+            user_move = input("Enter your move (e.g., 'e2e4'): ")
+            try:
+                board.push_san(user_move)
+            except ValueError:
+                print("Invalid move. Try again.")
+
+    # Game over, print the result
+    print("Game Over. Result:", board.result())
