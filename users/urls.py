@@ -23,6 +23,6 @@ urlpatterns = [
     path('test/', views.test, name='test' ),
     path('mcts_moves/', views.mcts_moves, name='mcts_moves'),
     path('reset_board/', views.reset_board, name='reset_board'),
-    
+    path('match_moves/', views.match_moves, name='match_moves')
 ]
 

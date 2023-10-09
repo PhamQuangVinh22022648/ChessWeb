@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from algorithms import Board as alpha_beta_Board
+from users.algorithms import Board as alpha_beta_Board
 from users.montecarlotree import *
 from django.http import JsonResponse
 from django.http import HttpResponse
@@ -51,7 +51,7 @@ def mcts_moves(request):
             n = len(moves)
             if len(moves) > 0:
                 text = moves[n-1]
-                
+                board.push_san(text)
                 best_move = get_best_move(board)
                 board.push_san(best_move)
                 cc = best_move
@@ -68,4 +68,23 @@ def mcts_moves(request):
             return JsonResponse(response_data, status=400)
     # If the request method is not POST, return an error response
     return JsonResponse({'error': 'Method not allowed'}, status=405)
-        
+def match_moves(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            moves = data.get('moves', [])
+            if alpha_beta_board.board.turn == chess.WHITE:
+                best_move, best_value = alpha_beta_board.get_bestMove(depth=4, maximize=True)
+                white_move = best_move
+                alpha_beta_board.make_move(white_move)
+                response_data = {'success': True, 'best_move': white_move}
+            else:
+                best_move, best_value = alpha_beta_board.get_bestMove(depth=4, maximize=False)
+                black_move = best_move
+                alpha_beta_board.make_move(black_move)
+                response_data = {'success': True, 'best_move': black_move}
+            return JsonResponse(response_data)
+        except json.JSONDecodeError as e:
+            response_data = {'success': False, 'error': 'Invalid JSON data'}
+            return JsonResponse(response_data, status=400)
+    return JsonResponse({'error': 'Method not allowed'}, status=405)

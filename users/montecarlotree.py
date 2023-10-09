@@ -72,7 +72,7 @@ def backpropagate ( node , payout ) :
 def get_best_move(board):
     root = TreeNode(board)
 
-    for i in range(100):
+    for i in range(300):
         node = select(root)
         if not node.isTerminalNode():
             node = expand(node)

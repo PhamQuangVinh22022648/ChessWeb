@@ -851,7 +851,7 @@ $(document).ready(function () {
         var lastMove = moves[moves.length-1];
         if (selectedAlgorithm === "MCTS") {
             algorithmUrl = "/mcts_moves/"; // Replace with the actual URL for MCTS moves
-        } else {
+        } else if(selectedAlgorithm === "test") {
             algorithmUrl = "/test/"; // Replace with the actual URL for alpha-beta moves
         }    
         $.ajax({
@@ -902,15 +902,49 @@ $(document).ready(function () {
                 console.error("Server response:", status);
             }
         })
+       
     }
+    function machineVsMachine() {
+        var csrftoken = getCookie('csrftoken');
+        var lastMove = moves[moves.length-1];
+        mlmoves = []
+        $.ajax({
+            type: "POST",
+            url: "/match_moves/", // Replace with the actual URL for match moves
+            data: JSON.stringify({'moves': lastMove}),
+            contentType: "application/json; charset=utf-8", // Set content type to JSON
+            dataType: "json", // Expect JSON response
+            headers: {
+                "X-CSRFToken": csrftoken // Include the CSRF token in the request headers
+            },
+            success: function (data) {
+                var bestMove = data.best_move;
+                console.log('Best Move:', bestMove);
+                c1 = bestMove[0] + bestMove[1]
+                c2 = bestMove[2] + bestMove[3]
+                fromMove = unconvertToSAN(c1)
+                toMove = unconvertToSAN(c2)
+                
+                moveForBlack(fromMove, toMove)
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                console.error("Error message:", error);
+                console.error("Server response:", status);
+            }
+        });
+    }
+    $("#ajaxButton3").click(function (){
+        setInterval(machineVsMachine, 3000);
+    });
     $("#ajaxButton").click(function (){
         selectedAlgorithm = "test"
-        setInterval(updateChessboard, 3000);
+        setInterval(updateChessboard, 4000);
     });
     
     $("#ajaxButton2").click(function (){
         selectedAlgorithm = "MCTS";
-        setInterval(updateChessboard, 3000);
+        setInterval(updateChessboard, 5000);
     });
     
 });

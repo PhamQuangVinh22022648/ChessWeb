@@ -82,6 +82,7 @@ background-color .8s ease;
 #ajaxButton2 {
     margin-top: 10px;
     margin-left: 10px;
+    margin-right: 20px;
     background-color: #48abe0;
     color: white;
     border: none;
@@ -127,7 +128,30 @@ background-color .8s ease;
     box-shadow: 0 0 2px darkslategray;
     transform: translateY(2px);
 }
-
+#ajaxButton3 {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: #48abe0;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 12px;
+    height: 100px;
+    width: 100px;
+    box-shadow: 0 2px 4px darkslategray;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#ajaxButton3:hover
+{
+    background-color: #65b9e6;
+}
+#ajaxButton3:active
+{
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+}
 ul {
     
     display: grid;
