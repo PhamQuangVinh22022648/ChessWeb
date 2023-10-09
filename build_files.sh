@@ -1,3 +1,2 @@
 pip install -r requirements.txt
-source webapp/bin/activate
-python manage.py collectstatic
+python3.11 manage.py collectstatic --no-input --clear
