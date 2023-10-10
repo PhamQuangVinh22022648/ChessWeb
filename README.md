@@ -7,10 +7,10 @@ Open a terminal or a Linux server and navigate to your desired directory
 Requires dependencies listed in requirements.txt. Install using 'pip install -r requirements.txt'
 
 If it does not work try:
-'pip install django'
-'pip install chess'
-'pip install asgiref'
-'pip install sqlparse'
-'pip install typing_extensions'
+'pip install django' ,
+'pip install chess' ,
+'pip install asgiref' ,
+'pip install sqlparse' ,
+'pip install typing_extensions' ,
 
 Run using 'python manage.py runserver' from root directory.
