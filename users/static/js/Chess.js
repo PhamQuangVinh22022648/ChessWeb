@@ -652,7 +652,7 @@ document.querySelectorAll('.box').forEach(item => {
                         }
                     }
             
-                    if(whiteCastleChance==true && a==107 && document.getElementById('b106').innerText== '' && document.getElementById('b105').innerText== '' && document.getElementById('b108').innerText== 'Wrook'){
+                    if(whiteCastleChance==true && a==107 && document.getElementById('b106').innerText== '' && document.getElementById('b105').innerText== 'Wking' && document.getElementById('b108').innerText== 'Wrook' && document.getElementById('b107') == ''){
                         document.getElementById('b106').innerText = 'Wrook'
                         document.getElementById('b107').innerText = 'Wking'
                         document.getElementById('b108').innerText = ''
@@ -661,7 +661,8 @@ document.querySelectorAll('.box').forEach(item => {
                         insertImage()
                         moves.push('O-O')
                     }
-                    if(whiteCastleChance==true && a==103 && document.getElementById('b104').innerText== '' && document.getElementById('b103').innerText== '' && document.getElementById('b102').innerText== '' && document.getElementById('b101').innerText== 'Wrook'){
+                    if(whiteCastleChance==true && a==103 && document.getElementById('b105') == 'Wking' &&document.getElementById('b104').innerText === '' && document.getElementById('b103').innerText === '' && document.getElementById('b102').innerText=== '' && document.getElementById('b101').innerText=== 'Wrook'){
+                        console.log('test')
                         document.getElementById('b104').innerText = 'Wrook'
                         document.getElementById('b103').innerText = 'Wking'
                         document.getElementById('b101').innerText = ''
