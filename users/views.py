@@ -74,12 +74,12 @@ def match_moves(request):
             data = json.loads(request.body.decode('utf-8'))
             moves = data.get('moves', [])
             if alpha_beta_board.board.turn == chess.WHITE:
-                best_move, best_value = alpha_beta_board.get_bestMove(depth=4, maximize=True)
+                best_move, best_value = alpha_beta_board.get_bestMove(depth=3, maximize=True)
                 white_move = best_move
                 alpha_beta_board.make_move(white_move)
                 response_data = {'success': True, 'best_move': white_move}
             else:
-                best_move, best_value = alpha_beta_board.get_bestMove(depth=4, maximize=False)
+                best_move, best_value = alpha_beta_board.get_bestMove(depth=3, maximize=False)
                 black_move = best_move
                 alpha_beta_board.make_move(black_move)
                 response_data = {'success': True, 'best_move': black_move}

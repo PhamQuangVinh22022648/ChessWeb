@@ -617,6 +617,7 @@ function unconvertToSAN(move)
 }
 
 // Moving the element
+mask = false
 document.querySelectorAll('.box').forEach(item => {
 
     item.addEventListener('click', function () {
@@ -636,6 +637,7 @@ document.querySelectorAll('.box').forEach(item => {
                     arr.push('0')
                     aup = eval(arr.join(''))
                     a = aside + aup
+                    
                     if (tanId[1] > 6)
                         {
                         if (tanText == `Wpawn` && aup == 800 ) {
@@ -651,47 +653,55 @@ document.querySelectorAll('.box').forEach(item => {
                             console.log(sanMoveAll)
                         }
                     }
-            
-                    if(whiteCastleChance==true && a==107 && document.getElementById('b106').innerText== '' && document.getElementById('b105').innerText== '' && document.getElementById('b108').innerText== 'Wrook'){
-                        document.getElementById('b106').innerText = 'Wrook'
-                        document.getElementById('b107').innerText = 'Wking'
-                        document.getElementById('b108').innerText = ''
-                        document.getElementById('b105').innerText = ''
-                        coloring()
-                        insertImage()
-                        moves.push('O-O')
+                    if(tanText == 'Wking'){
+                        if(whiteCastleChance==true && document.getElementById('b106').innerText === '' && document.getElementById('b105').innerText === '' && document.getElementById('b108').innerText === 'Wrook' ){
+                            document.getElementById('b106').innerText = 'Wrook'
+                            document.getElementById('b107').innerText = 'Wking'
+                            document.getElementById('b108').innerText = ''
+                            document.getElementById('b105').innerText = ''
+                            coloring()
+                            insertImage()
+                            moves.push('O-O')
+                            console.log(moves)
+                            mask = true
+                        }
+                        if(whiteCastleChance==true && a==103 && document.getElementById('b105') == 'Wking' &&document.getElementById('b104').innerText === '' && document.getElementById('b103').innerText === '' && document.getElementById('b102').innerText=== '' && document.getElementById('b101').innerText=== 'Wrook'){
+                            document.getElementById('b104').innerText = 'Wrook'
+                            document.getElementById('b103').innerText = 'Wking'
+                            document.getElementById('b101').innerText = ''
+                            document.getElementById('b105').innerText = ''
+                            document.getElementById('b102').innerText = ''
+                            coloring()
+                            insertImage()
+                            moves.push('O-O-O')
+                            mask = true
+                        }
                     }
-                    if(whiteCastleChance==true && a==103 && document.getElementById('b104').innerText== '' && document.getElementById('b103').innerText== '' && document.getElementById('b102').innerText== '' && document.getElementById('b101').innerText== 'Wrook'){
-                        document.getElementById('b104').innerText = 'Wrook'
-                        document.getElementById('b103').innerText = 'Wking'
-                        document.getElementById('b101').innerText = ''
-                        document.getElementById('b105').innerText = ''
-                        document.getElementById('b102').innerText = ''
-                        coloring()
-                        insertImage()
-                        moves.push('O-O-O')
+                    if (tanText == 'Bking')
+                    {
+                        if(blackCastleChance==true && a==807 && document.getElementById('b806').innerText== '' && document.getElementById('b807').innerText== '' && document.getElementById('b808').innerText== 'Brook'){
+                            document.getElementById('b806').innerText = 'Brook'
+                            document.getElementById('b807').innerText = 'Bking'
+                            document.getElementById('b808').innerText = ''
+                            document.getElementById('b805').innerText = ''
+                            coloring()
+                            insertImage()
+                            moves.push('O-O')
+        
+                        }
+                        if(blackCastleChance==true && a==803 && document.getElementById('b804').innerText== '' && document.getElementById('b803').innerText== '' && document.getElementById('b802').innerText== '' && document.getElementById('b801').innerText== 'Brook'){
+                            document.getElementById('b804').innerText = 'Brook'
+                            document.getElementById('b803').innerText = 'Bking'
+                            document.getElementById('b801').innerText = ''
+                            document.getElementById('b805').innerText = ''
+                            document.getElementById('b802').innerText = ''
+                            coloring()
+                            insertImage()
+                            moves.push('O-O-O')
+        
+                        }
                     }
-                    if(blackCastleChance==true && a==807 && document.getElementById('b806').innerText== '' && document.getElementById('b807').innerText== '' && document.getElementById('b808').innerText== 'Brook'){
-                        document.getElementById('b806').innerText = 'Brook'
-                        document.getElementById('b807').innerText = 'Bking'
-                        document.getElementById('b808').innerText = ''
-                        document.getElementById('b805').innerText = ''
-                        coloring()
-                        insertImage()
-                        moves.push('O-O')
-    
-                    }
-                    if(blackCastleChance==true && a==803 && document.getElementById('b804').innerText== '' && document.getElementById('b803').innerText== '' && document.getElementById('b802').innerText== '' && document.getElementById('b801').innerText== 'Brook'){
-                        document.getElementById('b804').innerText = 'Brook'
-                        document.getElementById('b803').innerText = 'Bking'
-                        document.getElementById('b801').innerText = ''
-                        document.getElementById('b805').innerText = ''
-                        document.getElementById('b802').innerText = ''
-                        coloring()
-                        insertImage()
-                        moves.push('O-O-O')
-    
-                    }
+                    
                 
                     if (tanId[1] < 3){
                         if (tanText == `Bpawn` && aup == 100  ) {
@@ -707,9 +717,9 @@ document.querySelectorAll('.box').forEach(item => {
                             
                         }
                     }
-
+                    
                     if (item2.style.backgroundColor == 'palegreen' && item2.innerText.length == 0) {
-                        
+                    
 
                         document.getElementById(tanId).innerText = ''
                         item2.innerText = tanText
@@ -723,6 +733,7 @@ document.querySelectorAll('.box').forEach(item => {
                         console.log(moves)
 
                     }
+                    
 
                     else if (item2.style.backgroundColor == 'palegreen') {
                         if(item2.id=='b103'){
